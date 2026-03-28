@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinaxis License Access Process Improvement</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f5f4;
+      --bg-info: #e6f1fb;
+      --bg-success: #eaf3de;
+      --bg-warning: #faeeda;
+      --bg-danger: #fcebeb;
+      --text-primary: #1a1a1a;
+      --text-secondary: #555550;
+      --text-tertiary: #999990;
+      --text-info: #185FA5;
+      --text-success: #3B6D11;
+      --text-warning: #BA7517;
+      --text-danger: #A32D2D;
+      --border: #e5e5e0;
+      --border-secondary: rgba(0,0,0,0.18);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #1e1e1c;
+        --bg-secondary: #2a2a28;
+        --bg-info: #0c2a45;
+        --bg-success: #172b08;
+        --bg-warning: #2e1f06;
+        --bg-danger: #2e0d0d;
+        --text-primary: #f0efea;
+        --text-secondary: #b0afa8;
+        --text-tertiary: #707068;
+        --text-info: #85B7EB;
+        --text-success: #97C459;
+        --text-warning: #FAC775;
+        --text-danger: #F09595;
+        --border: #333330;
+        --border-secondary: rgba(255,255,255,0.15);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .site {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    /* ── Hero ── */
+    .hero-band {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .org-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-info);
+      background: var(--bg-info);
+      padding: 3px 10px;
+      border-radius: var(--radius-md);
+      display: inline-block;
+      margin-bottom: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .hero-band h1 {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-divider {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin: 1.25rem 0;
+    }
+    .hero-overview {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .hoi-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
+    .hoi-val   { font-size: 13px; color: var(--text-primary); font-weight: 600; }
+    .hoi-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-pill {
+      font-size: 12px;
+      color: var(--text-secondary);
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 5px 12px;
+    }
+    .hero-pill b { color: var(--text-primary); font-weight: 600; }
+
+    /* ── Progress ── */
+    .card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .phase-track {
+      display: flex;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 0.5px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .phase-step { flex: 1; padding: 0.75rem 0.5rem; text-align: center; border-right: 0.5px solid var(--border); }
+    .phase-step:last-child { border-right: none; }
+    .ps-name { font-size: 11px; font-weight: 600; }
+    .ps-date { font-size: 10px; margin-top: 3px; }
+    .ps-dot  { width: 7px; height: 7px; border-radius: 50%; margin: 5px auto 0; }
+    .phase-done     { background: var(--bg-secondary); }
+    .phase-done .ps-name { color: var(--text-secondary); }
+    .phase-done .ps-date { color: var(--text-tertiary); }
+    .phase-done .ps-dot  { background: #639922; }
+    .phase-current  { background: var(--bg-info); border-top: 2px solid #378ADD; }
+    .phase-current .ps-name { color: var(--text-info); }
+    .phase-current .ps-date { color: #378ADD; }
+    .phase-current .ps-dot  { background: #378ADD; }
+    .phase-upcoming .ps-name { color: var(--text-tertiary); }
+    .phase-upcoming .ps-date { color: var(--text-tertiary); }
+    .phase-upcoming .ps-dot  { background: var(--border); }
+    .progress-note { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+    .progress-note b { color: var(--text-info); font-weight: 600; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 2rem; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .divider { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
+
+    /* ── Grids ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .col-full { grid-column: span 2; }
+
+    /* ── Inner card ── */
+    .inner-card {
+      background: var(--bg-primary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+    }
+
+    /* ── Labels ── */
+    .pc-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .pc-label.red   { color: var(--text-danger); }
+    .pc-label.blue  { color: var(--text-info); }
+    .pc-label.green { color: var(--text-success); }
+    .sc-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-tertiary); margin-bottom: 8px; }
+
+    /* ── Bullets ── */
+    .bullet { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
+    .bullet:last-child { margin-bottom: 0; }
+    .bdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+    .bdot.red   { background: #E24B4A; }
+    .bdot.blue  { background: #378ADD; }
+    .bdot.green { background: #639922; }
+    .bdot.gray  { background: #888; }
+    .btext { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .btext b { color: var(--text-primary); font-weight: 600; }
+
+    /* ── Benefits ── */
+    .bc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .bc-avatar {
+      width: 32px; height: 32px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .bc-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .bc-role  { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
+
+    /* ── Process comparison ── */
+    .flow-col-title {
+      font-size: 14px; font-weight: 600; color: var(--text-primary);
+      margin-bottom: 0.75rem; padding-bottom: 8px;
+      border-bottom: 0.5px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: var(--radius-md); font-weight: 600; }
+    .tag-bad  { background: var(--bg-danger);   color: var(--text-danger); }
+    .tag-good { background: var(--bg-success);  color: var(--text-success); }
+    .flow-step {
+      padding: 8px 0;
+      border-bottom: 0.5px solid var(--border);
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .fdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .fdot.bad  { background: #E24B4A; }
+    .fdot.good { background: #639922; }
+    .ftext { font-size: 13px; color: var(--text-primary); line-height: 1.4; }
+    .fnote { font-size: 11px; margin-top: 2px; }
+    .fnote.bad  { color: var(--text-danger); }
+    .fnote.good { color: var(--text-success); }
+
+    /* ── Deliverables ── */
+    .d-icon {
+      width: 28px; height: 28px;
+      border-radius: var(--radius-md);
+      background: var(--bg-info);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .d-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .d-desc  { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── Metrics ── */
+    .metric-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+    .metric-sub   { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
+    .bar-bg   { background: var(--bg-secondary); border-radius: 4px; height: 7px; width: 100%; margin-bottom: 6px; }
+    .bar-fill { height: 7px; border-radius: 4px; }
+    .bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-tertiary); }
+
+    /* ── Status ── */
+    .status-row {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1rem; padding-bottom: 1rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .status-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .st-icon {
+      width: 30px; height: 30px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .icon-info { background: var(--bg-info); }
+    .icon-warn { background: var(--bg-warning); }
+    .icon-ok   { background: var(--bg-success); }
+    .st-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
+    .st-body  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+    .impact-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-md); }
+    .pill-warn { background: var(--bg-warning); color: var(--text-warning); }
+    .pill-ok   { background: var(--bg-success);  color: var(--text-success); }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    .faq-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .faq-a { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 0.5px solid var(--border);
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.75rem 3rem; }
+      .hero-band { padding: 1.5rem 1.25rem; }
+      .hero-overview { grid-template-columns: 1fr 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .col-full { grid-column: span 1; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .hero-band h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+
+  <!-- Hero -->
+  <div class="hero-band">
+    <div class="org-tag">Diamond Pharmaceuticals · CS 632 IT Project Management</div>
+    <h1>Kinaxis License Access<br>Process Improvement</h1>
+    <p class="hero-tagline">Supply planners at Diamond Pharmaceuticals need Kinaxis software licenses to execute their planning activities. Today, granting or modifying those licenses is a slow, manual process that delays work, increases costs, and creates audit risks. This project eliminates those pain points by automating the request, approval, and provisioning workflow end-to-end.</p>
+    <hr class="hero-divider">
+    <div class="hero-overview">
+      <div>
+        <div class="hoi-label">Problem</div>
+        <div class="hoi-val">Manual license process</div>
+        <div class="hoi-sub">7 days · $372/week · 5 hrs per user</div>
+      </div>
+      <div>
+        <div class="hoi-label">Solution</div>
+        <div class="hoi-val">Automated workflow</div>
+        <div class="hoi-sub">Power Automate · digital form · repository</div>
+      </div>
+      <div>
+        <div class="hoi-label">Target outcome</div>
+        <div class="hoi-val">4 days · 30 min/user</div>
+        <div class="hoi-sub">50% satisfaction improvement</div>
+      </div>
+    </div>
+    <div class="hero-pills">
+      <div class="hero-pill">PM <b>Daniela Ortiz</b></div>
+      <div class="hero-pill">Sponsor <b>Mike Day</b></div>
+      <div class="hero-pill">Jun 10 – Dec 15, 2026</div>
+      <div class="hero-pill">Budget <b>$6,630</b></div>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="card section">
+    <div class="section-label">Project progress</div>
+    <div class="phase-track">
+      <div class="phase-step phase-done"><div class="ps-name">Analysis</div><div class="ps-date">Jun</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-done"><div class="ps-name">Design</div><div class="ps-date">Jul</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-done"><div class="ps-name">Build</div><div class="ps-date">Aug</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-current"><div class="ps-name">Pilot</div><div class="ps-date">Aug 31</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-upcoming"><div class="ps-name">Launch</div><div class="ps-date">Sep 15</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-upcoming"><div class="ps-name">Measure</div><div class="ps-date">Dec 15</div><div class="ps-dot"></div></div>
+    </div>
+    <div class="progress-note"><b>Currently in: Pilot phase</b> &nbsp;·&nbsp; As of September 1, 2026</div>
+  </div>
+
+  <!-- Why -->
+  <div class="card section">
+    <div class="section-label">Why this project is being done</div>
+    <div class="grid-2">
+      <div class="inner-card">
+        <div class="pc-label red">Business Problem</div>
+        <div class="bullet"><div class="bdot red"></div><div class="btext">License requests processed through a <b>manual, time-consuming</b> workflow</div></div>
+        <div class="bullet"><div class="bdot red"></div><div class="btext">Takes up to <b>7 business days</b> and <b>5 hours of effort</b> per user</div></div>
+        <div class="bullet"><div class="bdot red"></div><div class="btext">Delays prevent planners from starting work and reduce customer satisfaction</div></div>
+      </div>
+      <div class="inner-card">
+        <div class="pc-label blue">Why This Matters</div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext"><b>4 new users per week</b> require access or access changes on average</div></div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext">Current processing costs the organization <b>$372/week</b> in labor</div></div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext">Manual steps make the process hard to scale, transfer, and audit</div></div>
+      </div>
+      <div class="inner-card col-full">
+        <div class="pc-label green">Project Goal</div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Optimize the Kinaxis license access process for supply planners by implementing <b>automation</b>, an <b>approval workflow</b>, and <b>centralized documentation</b> — improving customer experience and reducing lead time from 7 to 4 business days.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits -->
+  <div class="card section">
+    <div class="section-label">Business advantages &amp; benefits</div>
+    <div class="grid-2">
+      <div class="inner-card">
+        <div class="bc-header">
+          <div class="bc-avatar" style="background:var(--bg-info);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#185FA5" stroke-width="1.5"/><path d="M2 14c0-3.314 2.686-5 6-5s6 1.686 6 5" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="bc-title">Supply Planners</div><div class="bc-role">End users</div></div>
+        </div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Get access in <b>4 days instead of 7</b> — start executing duties sooner</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Receive <b>automatic notifications</b> at every step — no more guessing on request status</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Standardized form reduces <b>errors and rework</b> in the request process</div></div>
+      </div>
+      <div class="inner-card">
+        <div class="bc-header">
+          <div class="bc-avatar" style="background:var(--bg-success);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="#3B6D11" stroke-width="1.5"/><path d="M5 7h6M5 10h4" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="bc-title">Organization</div><div class="bc-role">Diamond Pharmaceuticals</div></div>
+        </div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Save <b>$5,000/week</b> by enabling planners to execute duties without access delays</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Reduce weekly processing cost by <b>15%</b> through automation</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Fully <b>audit-compliant</b> process with electronic approval trail</div></div>
+      </div>
+      <div class="inner-card">
+        <div class="bc-header">
+          <div class="bc-avatar" style="background:var(--bg-warning);">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v4M8 10v4M2 8h4M10 8h4" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="bc-title">COE &amp; Operations Team</div><div class="bc-role">License processors</div></div>
+        </div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Processing time drops from <b>5 hours to 30 minutes</b> per user</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Automated routing <b>eliminates manual handoffs</b> and follow-up overhead</div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Standardized process makes it <b>easier to onboard</b> new team members</div></div>
+      </div>
+      <div class="inner-card">
+        <div class="bc-header">
+          <div class="bc-avatar" style="background:#EEEDFE;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M3 8h7M3 12h5" stroke="#3C3489" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="bc-title">Audit &amp; Compliance</div><div class="bc-role">Regulatory &amp; Finance teams</div></div>
+        </div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Every access decision stored in a <b>centralized, role-restricted repository</b></div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Electronic approvals create a <b>complete and tamper-proof audit trail</b></div></div>
+        <div class="bullet"><div class="bdot green"></div><div class="btext">Role-based access rules enforced automatically — <b>no over-provisioning risk</b></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scope -->
+  <div class="card section">
+    <div class="section-label">Project scope</div>
+    <div class="grid-2">
+      <div class="inner-card col-full">
+        <div class="sc-label">Objective</div>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Optimize the Kinaxis license access process for supply planners and improve the overall customer experience — from request submission through license activation.</p>
+      </div>
+      <div class="inner-card col-full">
+        <div class="sc-label">Scope limits</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem 1.5rem;">
+          <div class="bullet"><div class="bdot gray"></div><div class="btext">Supply planning users only — other departments excluded</div></div>
+          <div class="bullet"><div class="bdot gray"></div><div class="btext">Uses existing company tools and approved budget — no new technology</div></div>
+          <div class="bullet"><div class="bdot gray"></div><div class="btext">Centralized storage with controlled access to all request documentation</div></div>
+          <div class="bullet"><div class="bdot gray"></div><div class="btext">Timely notifications to requesters at every stage of the process</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Process Comparison -->
+  <div class="card section">
+    <div class="section-label">Process comparison</div>
+    <div class="grid-2">
+      <div>
+        <div class="flow-col-title">As-Is state <span class="tag tag-bad">Current</span></div>
+        <div class="flow-step"><div class="fdot bad"></div><div><div class="ftext">License requester submits request manually</div><div class="fnote bad">No standard form — inconsistent inputs</div></div></div>
+        <div class="flow-step"><div class="fdot bad"></div><div><div class="ftext">COE license processor manually reviews request</div><div class="fnote bad">Avg. 5 hrs per user — error prone</div></div></div>
+        <div class="flow-step"><div class="fdot bad"></div><div><div class="ftext">Manual approval from request approver</div><div class="fnote bad">No electronic audit trail</div></div></div>
+        <div class="flow-step"><div class="fdot bad"></div><div><div class="ftext">Kinaxis Admin manually grants or edits access</div><div class="fnote bad">Risk of incorrect access levels</div></div></div>
+        <div class="flow-step"><div class="fdot bad"></div><div><div class="ftext">User notified (ad hoc)</div><div class="fnote bad">7 business days end-to-end</div></div></div>
+      </div>
+      <div>
+        <div class="flow-col-title">To-Be state <span class="tag tag-good">Improved</span></div>
+        <div class="flow-step"><div class="fdot good"></div><div><div class="ftext">Requester submits standardized digital form</div><div class="fnote good">Validated fields prevent errors</div></div></div>
+        <div class="flow-step"><div class="fdot good"></div><div><div class="ftext">Power Automate routes request automatically</div><div class="fnote good">Processing reduced to 30 min</div></div></div>
+        <div class="flow-step"><div class="fdot good"></div><div><div class="ftext">Electronic approval with automatic notification</div><div class="fnote good">Full audit trail stored in repository</div></div></div>
+        <div class="flow-step"><div class="fdot good"></div><div><div class="ftext">Kinaxis Admin grants access per approved request</div><div class="fnote good">Role-based access rules enforced</div></div></div>
+        <div class="flow-step"><div class="fdot good"></div><div><div class="ftext">Automated notification sent to user</div><div class="fnote good">Target: 4 business days end-to-end</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deliverables -->
+  <div class="card section">
+    <div class="section-label">Key deliverables</div>
+    <div class="grid-3">
+      <div class="inner-card">
+        <div class="d-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#185FA5" stroke-width="1.5"/><path d="M5 8h6M5 5h4" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="d-title">Automated Request Form</div>
+        <div class="d-desc">Standardized digital form replacing manual submissions, with validated inputs to reduce errors.</div>
+      </div>
+      <div class="inner-card">
+        <div class="d-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M10 5l3 3-3 3" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="d-title">Power Automate Workflow</div>
+        <div class="d-desc">Automated approval and provisioning workflow that routes requests and triggers license activation.</div>
+      </div>
+      <div class="inner-card">
+        <div class="d-icon"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="6" rx="5" ry="3" stroke="#185FA5" stroke-width="1.5"/><path d="M3 6v4c0 1.66 2.24 3 5 3s5-1.34 5-3V6" stroke="#185FA5" stroke-width="1.5"/></svg></div>
+        <div class="d-title">Centralized Repository</div>
+        <div class="d-desc">Secure, role-restricted cloud storage maintaining a complete audit trail for every access decision.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metrics -->
+  <div class="card section">
+    <div class="section-label">Success metrics targets</div>
+    <div class="grid-2">
+      <div class="inner-card">
+        <div class="metric-title">Lead time reduction</div>
+        <div class="metric-sub">7 days → 4 days target</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:43%;background:#639922;"></div></div>
+        <div class="bar-labels"><span>Current: 7 days</span><span>Target: 4 days (43% reduction)</span></div>
+      </div>
+      <div class="inner-card">
+        <div class="metric-title">Processing time per user</div>
+        <div class="metric-sub">5 hrs → 30 min target</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:90%;background:#639922;"></div></div>
+        <div class="bar-labels"><span>Current: 5 hrs</span><span>Target: 30 min (90% reduction)</span></div>
+      </div>
+      <div class="inner-card">
+        <div class="metric-title">Weekly cost reduction</div>
+        <div class="metric-sub">$372/wk → 15% less</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:15%;background:#BA7517;"></div></div>
+        <div class="bar-labels"><span>Current: $372</span><span>Target: $316/wk</span></div>
+      </div>
+      <div class="inner-card">
+        <div class="metric-title">Customer satisfaction</div>
+        <div class="metric-sub">Post-implementation survey</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:50%;background:#185FA5;"></div></div>
+        <div class="bar-labels"><span>Baseline: low</span><span>Target: +50% improvement</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status -->
+  <div class="card section">
+    <div class="section-label">Current status — September 1, 2026</div>
+    <div class="status-row">
+      <div class="st-icon icon-info">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#185FA5" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="st-title">Pilot phase completed — workflow issue identified and being resolved</div>
+        <div class="st-body">During the pilot on August 31, a participant reported not receiving a notification after submitting a license request. The project team reviewed the automation log and found that approval decisions were not being captured correctly by the Power Automate workflow, preventing license activation and user notifications. The team is working with IT to correct and retest the workflow before go-live.</div>
+      </div>
+    </div>
+    <div class="status-row">
+      <div class="st-icon icon-warn">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 13H2L8 2Z" stroke="#BA7517" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v3M8 11v.01" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="st-title">Impact on project</div>
+        <div class="st-body">The go-live date of September 15 is under review while the workflow fix is completed. Additional analyst hours are required; budget impact is being assessed. All original deliverables remain in scope.</div>
+        <div class="impact-pills">
+          <span class="pill pill-warn">Schedule under review</span>
+          <span class="pill pill-warn">Cost being assessed</span>
+          <span class="pill pill-ok">Scope unchanged</span>
+          <span class="pill pill-ok">Quality standards maintained</span>
+        </div>
+      </div>
+    </div>
+    <div class="status-row">
+      <div class="st-icon icon-ok">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <div class="st-title">Interim measures in place</div>
+        <div class="st-body">License requests are being processed manually while the workflow is corrected. The affected pilot user was notified directly and their license has been granted. The team continues to monitor all pending requests.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card section">
+    <div class="section-label">Frequently asked questions</div>
+    <div class="faq-list">
+      <div class="inner-card">
+        <div class="faq-q">How will user data be managed and protected?</div>
+        <div class="faq-a">All license request data will be stored in a cloud-based centralized repository hosted on AWS. Access is controlled through AWS IAM (Identity and Access Management), which restricts repository access to specific authorized team members only — including the COE License Processor, Kinaxis Admin, Request Approver, Technical Manager, Audit Expert, and Regulatory/Finance team.</div>
+      </div>
+      <div class="inner-card">
+        <div class="faq-q">When will the project be completed?</div>
+        <div class="faq-a">The project is planned for completion on December 15, 2026, when the post-implementation satisfaction survey will be finalized and results analyzed. The go-live launch date is currently under review following the workflow issue identified during the pilot phase.</div>
+      </div>
+      <div class="inner-card">
+        <div class="faq-q">How will this project benefit the company?</div>
+        <div class="faq-a">Supply planners will receive access in <b>4 business days instead of 7</b>, allowing them to start working sooner. Processing effort per user drops from 5 hours to 30 minutes, and the company can expect to save $5,000 per week by reducing delays. The automated workflow also reduces human error and maintains a complete, audit-ready record of every access decision.</div>
+      </div>
+      <div class="inner-card">
+        <div class="faq-q">Where can stakeholders go with questions?</div>
+        <div class="faq-a">All questions and concerns should be directed to Project Manager Daniela Ortiz. Urgent issues can be escalated to Project Sponsor Mike Day. The project team holds weekly status meetings and publishes summaries after each major milestone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Kinaxis License Access Process Improvement &nbsp;·&nbsp; Diamond Pharmaceuticals &nbsp;·&nbsp; CS 632 IT Project Management &nbsp;·&nbsp; 2026
+  </div>
+
+</div>
+</body>
+</html>
