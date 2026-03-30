@@ -22,9 +22,6 @@
       --text-warning: #BA7517;
       --text-danger: #A32D2D;
       --border: #e5e5e0;
-      --border-secondary: rgba(0,0,0,0.18);
-      --radius-md: 8px;
-      --radius-lg: 12px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -43,7 +40,6 @@
         --text-warning: #FAC775;
         --text-danger: #F09595;
         --border: #333330;
-        --border-secondary: rgba(255,255,255,0.15);
       }
     }
 
@@ -55,85 +51,46 @@
       padding: 2rem 1rem 4rem;
     }
 
-    .site {
-      max-width: 880px;
-      margin: 0 auto;
-    }
+    .site { max-width: 880px; margin: 0 auto; }
 
-    /* ── Hero ── */
+    /* Hero */
     .hero-band {
       background: var(--bg-primary);
       border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
+      border-radius: 12px;
       padding: 2.5rem 2rem 2rem;
       margin-bottom: 2rem;
     }
     .org-tag {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-info);
-      background: var(--bg-info);
-      padding: 3px 10px;
-      border-radius: var(--radius-md);
-      display: inline-block;
-      margin-bottom: 1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      font-size: 11px; font-weight: 600; color: var(--text-info);
+      background: var(--bg-info); padding: 3px 10px; border-radius: 8px;
+      display: inline-block; margin-bottom: 1rem; letter-spacing: 0.04em; text-transform: uppercase;
     }
-    .hero-band h1 {
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.25;
-      margin-bottom: 0.75rem;
-    }
-    .hero-tagline {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 1.25rem;
-    }
-    .hero-divider {
-      border: none;
-      border-top: 0.5px solid var(--border);
-      margin: 1.25rem 0;
-    }
-    .hero-overview {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
+    .hero-band h1 { font-size: 28px; font-weight: 600; color: var(--text-primary); line-height: 1.25; margin-bottom: 0.75rem; }
+    .hero-tagline { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 640px; margin-bottom: 1.25rem; }
+    .hero-divider { border: none; border-top: 0.5px solid var(--border); margin: 1.25rem 0; }
+    .hero-overview { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
     .hoi-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 4px; }
     .hoi-val   { font-size: 13px; color: var(--text-primary); font-weight: 600; }
     .hoi-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
     .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .hero-pill {
-      font-size: 12px;
-      color: var(--text-secondary);
-      background: var(--bg-secondary);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 5px 12px;
+      font-size: 12px; color: var(--text-secondary);
+      background: var(--bg-secondary); border: 0.5px solid var(--border);
+      border-radius: 8px; padding: 5px 12px;
     }
     .hero-pill b { color: var(--text-primary); font-weight: 600; }
 
-    /* ── Progress ── */
-    .card {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .phase-track {
-      display: flex;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 0.5px solid var(--border);
-      margin-bottom: 0.5rem;
-    }
+    /* Cards & layout */
+    .card { background: var(--bg-primary); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+    .inner-card { background: var(--bg-primary); border: 0.5px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--text-tertiary); text-transform: uppercase; margin-bottom: 1rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .col-full { grid-column: span 2; }
+
+    /* Progress */
+    .phase-track { display: flex; border-radius: 12px; overflow: hidden; border: 0.5px solid var(--border); margin-bottom: 0.5rem; }
     .phase-step { flex: 1; padding: 0.75rem 0.5rem; text-align: center; border-right: 0.5px solid var(--border); }
     .phase-step:last-child { border-right: none; }
     .ps-name { font-size: 11px; font-weight: 600; }
@@ -153,39 +110,13 @@
     .progress-note { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
     .progress-note b { color: var(--text-info); font-weight: 600; }
 
-    /* ── Section ── */
-    .section { margin-bottom: 2rem; }
-    .section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .divider { border: none; border-top: 0.5px solid var(--border); margin: 2rem 0; }
-
-    /* ── Grids ── */
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-    .col-full { grid-column: span 2; }
-
-    /* ── Inner card ── */
-    .inner-card {
-      background: var(--bg-primary);
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-    }
-
-    /* ── Labels ── */
+    /* Labels & bullets */
     .pc-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
     .pc-label.red   { color: var(--text-danger); }
     .pc-label.blue  { color: var(--text-info); }
     .pc-label.green { color: var(--text-success); }
+    .pc-label.gray  { color: var(--text-tertiary); }
     .sc-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-tertiary); margin-bottom: 8px; }
-
-    /* ── Bullets ── */
     .bullet { display: flex; gap: 8px; margin-bottom: 6px; align-items: flex-start; }
     .bullet:last-child { margin-bottom: 0; }
     .bdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
@@ -196,32 +127,38 @@
     .btext { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
     .btext b { color: var(--text-primary); font-weight: 600; }
 
-    /* ── Benefits ── */
+    /* Benefits */
     .bc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .bc-avatar {
-      width: 32px; height: 32px;
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .bc-avatar { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .bc-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
     .bc-role  { font-size: 11px; color: var(--text-tertiary); margin-top: 1px; }
 
-    /* ── Process comparison ── */
+    /* Cost table */
+    .cost-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 1rem; }
+    .cost-table th {
+      text-align: left; font-size: 11px; font-weight: 600; color: var(--text-primary);
+      background: var(--bg-secondary); padding: 8px 12px;
+      border-bottom: 0.5px solid var(--border); letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .cost-table td { padding: 10px 12px; border-bottom: 0.5px solid var(--border); color: var(--text-secondary); vertical-align: middle; }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .cost-table .total-row td { font-weight: 600; color: var(--text-primary); background: var(--bg-secondary); }
+    .savings-pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 8px;
+      background: var(--bg-success); color: var(--text-success);
+    }
+
+    /* Process comparison */
     .flow-col-title {
       font-size: 14px; font-weight: 600; color: var(--text-primary);
-      margin-bottom: 0.75rem; padding-bottom: 8px;
-      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 0.75rem; padding-bottom: 8px; border-bottom: 0.5px solid var(--border);
       display: flex; align-items: center; gap: 8px;
     }
-    .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: var(--radius-md); font-weight: 600; }
-    .tag-bad  { background: var(--bg-danger);   color: var(--text-danger); }
-    .tag-good { background: var(--bg-success);  color: var(--text-success); }
-    .flow-step {
-      padding: 8px 0;
-      border-bottom: 0.5px solid var(--border);
-      display: flex; gap: 8px; align-items: flex-start;
-    }
+    .tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 8px; font-weight: 600; }
+    .tag-bad  { background: var(--bg-danger);  color: var(--text-danger); }
+    .tag-good { background: var(--bg-success); color: var(--text-success); }
+    .flow-step { padding: 8px 0; border-bottom: 0.5px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
     .flow-step:last-child { border-bottom: none; }
     .fdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
     .fdot.bad  { background: #E24B4A; }
@@ -231,63 +168,56 @@
     .fnote.bad  { color: var(--text-danger); }
     .fnote.good { color: var(--text-success); }
 
-    /* ── Deliverables ── */
-    .d-icon {
-      width: 28px; height: 28px;
-      border-radius: var(--radius-md);
-      background: var(--bg-info);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 8px;
-    }
+    /* Deliverables */
+    .d-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--bg-info); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
     .d-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
     .d-desc  { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
 
-    /* ── Metrics ── */
+    /* Metrics */
     .metric-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
     .metric-sub   { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
     .bar-bg   { background: var(--bg-secondary); border-radius: 4px; height: 7px; width: 100%; margin-bottom: 6px; }
     .bar-fill { height: 7px; border-radius: 4px; }
     .bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-tertiary); }
 
-    /* ── Status ── */
+    /* Status / Crisis */
     .status-row {
       display: flex; gap: 1rem; align-items: flex-start;
-      margin-bottom: 1rem; padding-bottom: 1rem;
-      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border);
     }
     .status-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .st-icon {
-      width: 30px; height: 30px;
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
+    .st-icon { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .icon-info { background: var(--bg-info); }
     .icon-warn { background: var(--bg-warning); }
     .icon-ok   { background: var(--bg-success); }
+    .icon-red  { background: var(--bg-danger); }
     .st-title { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
     .st-body  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
     .impact-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-md); }
+    .pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 8px; }
     .pill-warn { background: var(--bg-warning); color: var(--text-warning); }
     .pill-ok   { background: var(--bg-success);  color: var(--text-success); }
+    .pill-red  { background: var(--bg-danger);   color: var(--text-danger); }
 
-    /* ── FAQ ── */
-    .faq-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+    /* Impact cost table */
+    .impact-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px; }
+    .impact-table th {
+      text-align: left; font-size: 11px; font-weight: 600;
+      background: var(--bg-secondary); padding: 7px 10px;
+      border-bottom: 0.5px solid var(--border); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .impact-table td { padding: 8px 10px; border-bottom: 0.5px solid var(--border); color: var(--text-secondary); }
+    .impact-table tr:last-child td { font-weight: 600; color: var(--text-primary); background: var(--bg-secondary); border-bottom: none; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 1rem; }
     .faq-q { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
     .faq-a { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
 
-    /* ── Footer ── */
-    .footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 0.5px solid var(--border);
-      font-size: 12px;
-      color: var(--text-tertiary);
-      text-align: center;
-    }
+    /* Footer */
+    .footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--text-tertiary); text-align: center; }
 
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 600px) {
       body { padding: 1rem 0.75rem 3rem; }
       .hero-band { padding: 1.5rem 1.25rem; }
@@ -302,7 +232,7 @@
 <body>
 <div class="site">
 
-  <!-- Hero -->
+  <!-- ── Hero ── -->
   <div class="hero-band">
     <div class="org-tag">Diamond Pharmaceuticals · CS 632 IT Project Management</div>
     <h1>Kinaxis License Access<br>Process Improvement</h1>
@@ -333,22 +263,22 @@
     </div>
   </div>
 
-  <!-- Progress -->
-  <div class="card section">
+  <!-- ── Progress ── -->
+  <div class="card">
     <div class="section-label">Project progress</div>
     <div class="phase-track">
       <div class="phase-step phase-done"><div class="ps-name">Analysis</div><div class="ps-date">Jun</div><div class="ps-dot"></div></div>
       <div class="phase-step phase-done"><div class="ps-name">Design</div><div class="ps-date">Jul</div><div class="ps-dot"></div></div>
       <div class="phase-step phase-done"><div class="ps-name">Build</div><div class="ps-date">Aug</div><div class="ps-dot"></div></div>
       <div class="phase-step phase-current"><div class="ps-name">Pilot</div><div class="ps-date">Aug 31</div><div class="ps-dot"></div></div>
-      <div class="phase-step phase-upcoming"><div class="ps-name">Launch</div><div class="ps-date">Sep 15</div><div class="ps-dot"></div></div>
-      <div class="phase-step phase-upcoming"><div class="ps-name">Measure</div><div class="ps-date">Dec 15</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-upcoming"><div class="ps-name">Launch</div><div class="ps-date">TBD</div><div class="ps-dot"></div></div>
+      <div class="phase-step phase-upcoming"><div class="ps-name">Measure</div><div class="ps-date">Jan 15</div><div class="ps-dot"></div></div>
     </div>
-    <div class="progress-note"><b>Currently in: Pilot phase</b> &nbsp;·&nbsp; As of September 1, 2026</div>
+    <div class="progress-note"><b>Currently in: Pilot phase</b> &nbsp;·&nbsp; As of September 1, 2026 &nbsp;·&nbsp; Final milestone revised to January 15, 2027</div>
   </div>
 
-  <!-- Why -->
-  <div class="card section">
+  <!-- ── Why ── -->
+  <div class="card">
     <div class="section-label">Why this project is being done</div>
     <div class="grid-2">
       <div class="inner-card">
@@ -370,8 +300,8 @@
     </div>
   </div>
 
-  <!-- Benefits -->
-  <div class="card section">
+  <!-- ── Business Benefits ── -->
+  <div class="card">
     <div class="section-label">Business advantages &amp; benefits</div>
     <div class="grid-2">
       <div class="inner-card">
@@ -418,11 +348,50 @@
         <div class="bullet"><div class="bdot green"></div><div class="btext">Electronic approvals create a <b>complete and tamper-proof audit trail</b></div></div>
         <div class="bullet"><div class="bdot green"></div><div class="btext">Role-based access rules enforced automatically — <b>no over-provisioning risk</b></div></div>
       </div>
+
+      <!-- Cost comparison table -->
+      <div class="inner-card col-full">
+        <div class="pc-label gray">Total savings for the company — cost comparison per user</div>
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Cost area</th>
+              <th>Cost center affected</th>
+              <th>Current cost</th>
+              <th>Future cost</th>
+              <th>Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Per user access processing</td>
+              <td>COE (Project team)</td>
+              <td>$93</td>
+              <td>$67</td>
+              <td><span class="savings-pill">28%</span></td>
+            </tr>
+            <tr>
+              <td>User waiting for license</td>
+              <td>Overall Diamond Pharmaceuticals</td>
+              <td>$2,858</td>
+              <td>$1,633</td>
+              <td><span class="savings-pill">43%</span></td>
+            </tr>
+            <tr class="total-row">
+              <td><b>Total cost per user</b></td>
+              <td><b>Diamond Pharmaceuticals</b></td>
+              <td><b>$2,951</b></td>
+              <td><b>$1,701</b></td>
+              <td><span class="savings-pill">42%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
-  <!-- Scope -->
-  <div class="card section">
+  <!-- ── Scope ── -->
+  <div class="card">
     <div class="section-label">Project scope</div>
     <div class="grid-2">
       <div class="inner-card col-full">
@@ -441,8 +410,8 @@
     </div>
   </div>
 
-  <!-- Process Comparison -->
-  <div class="card section">
+  <!-- ── Process Comparison ── -->
+  <div class="card">
     <div class="section-label">Process comparison</div>
     <div class="grid-2">
       <div>
@@ -464,8 +433,8 @@
     </div>
   </div>
 
-  <!-- Deliverables -->
-  <div class="card section">
+  <!-- ── Deliverables ── -->
+  <div class="card">
     <div class="section-label">Key deliverables</div>
     <div class="grid-3">
       <div class="inner-card">
@@ -486,8 +455,8 @@
     </div>
   </div>
 
-  <!-- Metrics -->
-  <div class="card section">
+  <!-- ── Success Metrics ── -->
+  <div class="card">
     <div class="section-label">Success metrics targets</div>
     <div class="grid-2">
       <div class="inner-card">
@@ -517,46 +486,113 @@
     </div>
   </div>
 
-  <!-- Status -->
-  <div class="card section">
+  <!-- ── Current Status / Crisis ── -->
+  <div class="card">
     <div class="section-label">Current status — September 1, 2026</div>
+
+    <!-- What happened -->
+    <div class="status-row">
+      <div class="st-icon icon-red">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 13H2L8 2Z" stroke="#A32D2D" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v3M8 11v.01" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="st-title">Risk #4 hit: Workflow actions not synchronized</div>
+        <div class="st-body">During the August 31 pilot, a requester reported that an automated request submitted about a week earlier still had no update. The team reviewed the automation log and found that the approver's decision had been made, but the workflow did not capture it correctly — so the requester was never notified and the license was never granted.</div>
+      </div>
+    </div>
+
+    <!-- Mitigation already in place -->
+    <div class="status-row">
+      <div class="st-icon icon-warn">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#BA7517" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <div class="st-title">Mitigation already in place before the risk hit</div>
+        <div class="st-body">The team had already planned to test and validate the workflow before and during the pilot phase — as documented in the Risk Management Plan: <em>"Conduct workflow testing and validation to ensure approval decisions flow correctly."</em> This prior effort enabled the team to quickly identify the exact failure point in the automation log.</div>
+      </div>
+    </div>
+
+    <!-- Contingency response -->
     <div class="status-row">
       <div class="st-icon icon-info">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#185FA5" stroke-width="1.5"/><path d="M8 7v4M8 5.5v.5" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
       <div>
-        <div class="st-title">Pilot phase completed — workflow issue identified and being resolved</div>
-        <div class="st-body">During the pilot on August 31, a participant reported not receiving a notification after submitting a license request. The project team reviewed the automation log and found that approval decisions were not being captured correctly by the Power Automate workflow, preventing license activation and user notifications. The team is working with IT to correct and retest the workflow before go-live.</div>
+        <div class="st-title">Contingency response — how the team reacted</div>
+        <div class="bullet" style="margin-top:4px;"><div class="bdot blue"></div><div class="btext">The automated workflow was <b>paused</b> until the issue could be corrected</div></div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext">Requests are being <b>processed manually</b> so that license access can continue without further delay</div></div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext">The team is working with IT to <b>fix the workflow logic</b> before restarting the automated process — estimated to take more than 15 days</div></div>
+        <div class="bullet"><div class="bdot blue"></div><div class="btext">The affected pilot user was <b>notified directly</b> and their license was manually granted</div></div>
       </div>
     </div>
+
+    <!-- Project impact -->
     <div class="status-row">
       <div class="st-icon icon-warn">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 13H2L8 2Z" stroke="#BA7517" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 6v3M8 11v.01" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round"/></svg>
       </div>
-      <div>
-        <div class="st-title">Impact on project</div>
-        <div class="st-body">The go-live date of September 15 is under review while the workflow fix is completed. Additional analyst hours are required; budget impact is being assessed. All original deliverables remain in scope.</div>
-        <div class="impact-pills">
-          <span class="pill pill-warn">Schedule under review</span>
-          <span class="pill pill-warn">Cost being assessed</span>
+      <div style="width:100%;">
+        <div class="st-title">Project impact</div>
+        <div class="bullet" style="margin-top:4px;"><div class="bdot gray"></div><div class="btext">The launch milestone is <b>delayed</b> — new date to be determined after meeting with IT to identify and resolve the workflow bug</div></div>
+        <div class="bullet"><div class="bdot gray"></div><div class="btext">Additional time and IT resources are needed for <b>troubleshooting, correction, and retesting</b></div></div>
+        <div class="bullet"><div class="bdot gray"></div><div class="btext">Estimated date of completion for final milestone revised to <b>January 15, 2027</b></div></div>
+        <div class="bullet"><div class="bdot gray"></div><div class="btext">Cost impact: <b>$1,020</b> (20 hrs × $51/hr) for workflow fix — launch one month later than projected, assuming process can launch Oct 15</div></div>
+        <div class="impact-pills" style="margin-top:10px;">
+          <span class="pill pill-red">Schedule delayed</span>
+          <span class="pill pill-red">+$1,020 cost impact</span>
+          <span class="pill pill-warn">WBS rework required</span>
           <span class="pill pill-ok">Scope unchanged</span>
           <span class="pill pill-ok">Quality standards maintained</span>
         </div>
-      </div>
-    </div>
-    <div class="status-row">
-      <div class="st-icon icon-ok">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div>
-        <div class="st-title">Interim measures in place</div>
-        <div class="st-body">License requests are being processed manually while the workflow is corrected. The affected pilot user was notified directly and their license has been granted. The team continues to monitor all pending requests.</div>
+
+        <table class="impact-table" style="margin-top:14px;">
+          <thead>
+            <tr>
+              <th>Milestone delay cost</th>
+              <th>Timing</th>
+              <th>Cost $</th>
+              <th># Users</th>
+              <th>Total cost $</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Per user access process (manual)</td>
+              <td>—</td>
+              <td>$93</td>
+              <td>4</td>
+              <td>$372.00</td>
+            </tr>
+            <tr>
+              <td>User waiting for license*</td>
+              <td>7 days</td>
+              <td>$2,858</td>
+              <td>—</td>
+              <td>$11,433.33</td>
+            </tr>
+            <tr>
+              <td>Fix bug in workflow (estimate)</td>
+              <td>20 hrs</td>
+              <td>$51</td>
+              <td>—</td>
+              <td>$1,020.00</td>
+            </tr>
+            <tr>
+              <td><b>Total</b></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><b>$12,825.33</b></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px;color:var(--text-tertiary);margin-top:6px;">* Cost related to users waiting for a license is excluded from the project budget, as this cost was not accounted for in the initial budget. Optimizing this cost is the goal of the project, not a project expense.</p>
       </div>
     </div>
   </div>
 
-  <!-- FAQ -->
-  <div class="card section">
+  <!-- ── FAQ ── -->
+  <div class="card">
     <div class="section-label">Frequently asked questions</div>
     <div class="faq-list">
       <div class="inner-card">
@@ -565,11 +601,11 @@
       </div>
       <div class="inner-card">
         <div class="faq-q">When will the project be completed?</div>
-        <div class="faq-a">The project is planned for completion on December 15, 2026, when the post-implementation satisfaction survey will be finalized and results analyzed. The go-live launch date is currently under review following the workflow issue identified during the pilot phase.</div>
+        <div class="faq-a">The final milestone (user satisfaction survey) is now planned for <b>January 15, 2027</b>, revised from December 15, 2026 due to the workflow issue identified during the pilot phase. The go-live launch date is to be determined after the IT fix is completed and retested.</div>
       </div>
       <div class="inner-card">
         <div class="faq-q">How will this project benefit the company?</div>
-        <div class="faq-a">Supply planners will receive access in <b>4 business days instead of 7</b>, allowing them to start working sooner. Processing effort per user drops from 5 hours to 30 minutes, and the company can expect to save $5,000 per week by reducing delays. The automated workflow also reduces human error and maintains a complete, audit-ready record of every access decision.</div>
+        <div class="faq-a">Supply planners will receive access in <b>4 business days instead of 7</b>, allowing them to start working sooner. Processing effort per user drops from 5 hours to 30 minutes, and the company can expect to save $5,000 per week by reducing delays. The total cost per user will drop from <b>$2,951 to $1,701</b> — a 42% reduction. The automated workflow also reduces human error and maintains a complete, audit-ready record of every access decision.</div>
       </div>
       <div class="inner-card">
         <div class="faq-q">Where can stakeholders go with questions?</div>
